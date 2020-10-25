@@ -10,8 +10,16 @@ import Plot from './Plot'
 const styles = css`
   display: flex;
   flex-direction: column;
-  body: {
-    flex-grow: 1;
+  .firstRow {
+    display: flex;
+  }
+  .percentage {
+    width: 40%;
+    margin: 25px;
+  }
+  .logs {
+    width: 60%;
+    margin: 25px;
   }
 `
 
@@ -23,9 +31,9 @@ export default function MainPage() {
           <Typography variant="h5">CPU load monitoring</Typography>
         </Toolbar>
       </AppBar>
-      <div>
-        <Percentage />
-        <Logs />
+      <div className="firstRow">
+        <Percentage className="percentage" />
+        <Logs className="logs" />
       </div>
       <Plot />
     </div>
