@@ -10,7 +10,7 @@ const styles = css`
 
 export default function Plot() {
   return (
-    <Paper elevation={1} css={styles}>
+    <Paper elevation={5} css={styles}>
       <div>
         <Typography
           variant="h4"
