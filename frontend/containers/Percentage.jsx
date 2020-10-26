@@ -45,7 +45,7 @@ export default function Percentage() {
           css={css`
             color: ${color};
           `}>
-          {averageLoad > 0 ? `${roundValue(averageLoad, 2) * 100}%` : 'Processing...'}
+          {averageLoad > 0 ? `${roundValue(averageLoad * 100, 0)}%` : 'Processing...'}
         </Typography>
       </div>
     </Paper>
