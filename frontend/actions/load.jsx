@@ -27,7 +27,6 @@ export function getAverageLoad() {
         })
       })
       .then(data => {
-        console.log(data)
         dispatch(getAverageLoadSuccess(data))
       })
       .catch(() => {

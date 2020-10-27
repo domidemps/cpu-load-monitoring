@@ -5,7 +5,9 @@ import Typography from '@material-ui/core/Typography'
 import {useDispatch, useSelector} from 'react-redux'
 import {useEffect} from 'react'
 import {getAverageLoad} from '../actions/load'
+import {incrementTimer} from '../actions/timer'
 import {roundValue} from '../helpers/utils'
+import {COLORS} from '../styles/material_ui_raw_theme_file'
 
 const styles = css`
   width: 40%;
@@ -19,13 +21,17 @@ export default function Percentage() {
 
   // Ping the average CPU load every 10 seconds
   useEffect(() => {
+    if (averageLoad === 0) {
+      dispatch(getAverageLoad())
+    }
     const interval = setInterval(() => {
       dispatch(getAverageLoad())
+      dispatch(incrementTimer())
     }, 10000)
     return () => clearInterval(interval)
   }, [averageLoad])
 
-  const color = averageLoad > 1 ? '#f55652' : '#80c728'
+  const color = averageLoad > 1 ? COLORS.overLoad : COLORS.normalLoad
 
   return (
     <Paper elevation={5} css={styles}>

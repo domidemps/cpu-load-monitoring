@@ -5,7 +5,7 @@
   "main": "frontend/index.jsx",
   "scripts": {
     "front": "webpack-dev-server -d --hot --inline --progress --colors",
-    "back": "python backend/server.py",
+    "back": "python3.7 backend/server.py",
     "start": "concurrently --kill-others \"yarn front\" \"yarn back\"",
     "build": "webpack --mode=production --progress --colors",
     "stats": "webpack --json > stats.json"
@@ -51,7 +51,9 @@
     "@material-ui/core": "^4.9.0",
     "@material-ui/icons": "^4.5.1",
     "@material/typography": "4.0.0",
+    "@nivo/bar": "0.52.1",
     "classnames": "2.2.6",
+    "dayjs": "1.9.4",
     "connected-react-router": "6.7.0",
     "fbjs": "1.0.0",
     "flexboxgrid": "6.3.1",
