@@ -26,9 +26,7 @@ export default (state = loadInitialState(), action) => {
       const {averageLoad} = action
       let {loadOverTime, timer} = state
       // Index of the data element to edit
-      const index = (timer % 600) / 10
-      // Add 10 seconds to the timer
-      timer += 10
+      const index = timer >= 590 ? 59 : (timer % 600) / 10
       // For each data element, we compute:
       // - the average load
       // - the current date time
@@ -38,6 +36,12 @@ export default (state = loadInitialState(), action) => {
         time: getDateTime(),
         color: averageLoad > 1 ? COLORS.overLoad : COLORS.normalLoad,
       }
+      // We only want to display a 10 minutes history
+      if (timer >= 600) {
+        loadOverTime.shift()
+      }
+      // Add 10 seconds to the timer
+      timer += 10
       return {
         ...state,
         averageLoad,
