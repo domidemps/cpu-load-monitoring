@@ -1,3 +1,3 @@
-export function incrementTimer() {
-  return {type: 'INCREMENT_TIMER'}
+export function incrementTimers() {
+  return {type: 'INCREMENT_TIMERS'}
 }

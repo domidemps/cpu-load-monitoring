@@ -2,10 +2,7 @@
 import {css, jsx} from '@emotion/core'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import {useDispatch, useSelector} from 'react-redux'
-import {useEffect} from 'react'
-import {getAverageLoad} from '../actions/load'
-import {incrementTimer} from '../actions/timer'
+import {useSelector} from 'react-redux'
 import {roundValue} from '../helpers/utils'
 import {COLORS} from '../styles/material_ui_raw_theme_file'
 
@@ -16,22 +13,8 @@ const styles = css`
 `
 
 export default function Percentage() {
-  const dispatch = useDispatch()
   const averageLoad = useSelector(state => state.load.averageLoad)
-
-  // Ping the average CPU load every 10 seconds
-  useEffect(() => {
-    if (averageLoad === 0) {
-      dispatch(getAverageLoad())
-    }
-    const interval = setInterval(() => {
-      dispatch(getAverageLoad())
-      dispatch(incrementTimer())
-    }, 10000)
-    return () => clearInterval(interval)
-  }, [averageLoad])
-
-  const color = averageLoad > 1 ? COLORS.overLoad : COLORS.normalLoad
+  const color = averageLoad > 1 ? COLORS.heavyLoad : COLORS.normalLoad
 
   return (
     <Paper elevation={5} css={styles}>
@@ -40,7 +23,7 @@ export default function Percentage() {
           text-align: center;
         `}>
         <Typography
-          variant="h4"
+          variant="h5"
           css={css`
             margin-bottom: 20px;
           `}>

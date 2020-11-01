@@ -5,7 +5,7 @@ export const COLORS = {
   background: '#1f1f1f',
   paper: '#2f2f2f',
   text: '#e0e0e0',
-  overLoad: '#f55652',
+  heavyLoad: '#f55652',
   normalLoad: '#80c728',
 }
 

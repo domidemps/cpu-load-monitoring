@@ -5,9 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import {ResponsiveBar} from '@nivo/bar'
 import {useSelector} from 'react-redux'
 import {COLORS} from '../styles/material_ui_raw_theme_file'
-import {darken, fade} from '@material-ui/core'
-
-const dayjs = require('dayjs')
+import {darken} from '@material-ui/core'
 
 const styles = css`
   margin: 25px;
@@ -50,7 +48,7 @@ export default function Plot() {
     <Paper elevation={5} css={styles}>
       <div style={{width: '100%', height}}>
         <Typography
-          variant="h4"
+          variant="h5"
           css={css`
             text-align: center;
           `}>
@@ -69,7 +67,7 @@ export default function Plot() {
             borderRadius={3}
             borderColor={'inherit'}
             axisLeft={{
-              legend: 'Average CPU load',
+              legend: 'Average CPU load (%)',
               legendPosition: 'middle',
               legendOffset: -50,
             }}
