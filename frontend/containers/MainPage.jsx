@@ -54,24 +54,28 @@ export default function MainPage() {
   // Heavy CPU load:
   // - average CPU load > 1
   // - since more than 2 minutes
+  // - no last event or last event is a recovery
   useEffect(() => {
-    if (isEvent(loadOverTime, 120, 'heavy')) {
-      // If this is the first event or the last event was a recovery
-      if (isEmpty(events) || last(events).type === 'recovery') {
-        const event = {type: 'heavy', startAt: getEvent(loadOverTime, 120).time}
-        dispatch(addEvent(event))
-        dispatch(updateCurrentEvent(event))
-      }
+    if (
+      isEvent(loadOverTime, 120, 'heavy') &&
+      (isEmpty(events) || last(events).type === 'recovery')
+    ) {
+      const event = {type: 'heavy', startAt: getEvent(loadOverTime, 120).time}
+      dispatch(addEvent(event))
+      dispatch(updateCurrentEvent(event))
     }
     // Recovery of heavy CPU load:
     // - average CPU load < 1
-    // - since more than 2 min
-    else if (isEvent(loadOverTime, 120, 'recovery')) {
-      if (!isEmpty(events) && last(events).type === 'heavy') {
-        const event = {type: 'recovery', startAt: getEvent(loadOverTime, 120).time}
-        dispatch(addEvent(event))
-        dispatch(updateCurrentEvent(event))
-      }
+    // - since more than 2 minutes
+    // - last event is a heavy CPU load
+    else if (
+      isEvent(loadOverTime, 120, 'recovery') &&
+      !isEmpty(events) &&
+      last(events).type === 'heavy'
+    ) {
+      const event = {type: 'recovery', startAt: getEvent(loadOverTime, 120).time}
+      dispatch(addEvent(event))
+      dispatch(updateCurrentEvent(event))
     }
   })
 
