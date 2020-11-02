@@ -1,3 +1,5 @@
+import {CONFIG} from '../config'
+
 import every from 'lodash/every'
 import takeRight from 'lodash/takeRight'
 import filter from 'lodash/filter'
@@ -11,13 +13,13 @@ export function roundValue(value, decimals) {
 export function isEvent(loadOverTime, period, type) {
   /* Check if a period of time is a heavy CPU load or a recovery from a heavy CPU load. */
 
-  const startElementIndex = period / 10
+  const startElementIndex = period / CONFIG.pingInterval
   // Get rid of initialization null values
   const realLoadsOverTime = filter(loadOverTime, loadObject => {
     return loadObject.load != null
   })
   return (
-    realLoadsOverTime.length >= 12 &&
+    realLoadsOverTime.length >= period / CONFIG.pingInterval &&
     every(takeRight(realLoadsOverTime, startElementIndex), loadObject => {
       if (type === 'heavy') {
         return loadObject.load > 100
@@ -31,7 +33,7 @@ export function isEvent(loadOverTime, period, type) {
 export function getEvent(loadOverTime, period) {
   /* Get the load object for a given period of time. */
 
-  const startElementIndex = period / 10
+  const startElementIndex = period / CONFIG.pingInterval
   // Get rid of initialization null values
   const realLoadsOverTime = filter(loadOverTime, loadObject => {
     return loadObject.load != null

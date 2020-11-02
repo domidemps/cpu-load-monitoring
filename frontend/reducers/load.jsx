@@ -1,12 +1,13 @@
 import {roundValue} from '../helpers/utils'
 import {COLORS} from '../styles/material_ui_raw_theme_file'
+import {CONFIG} from '../config'
 
 const dayjs = require('dayjs')
 
 export function loadInitialState() {
   return {
     averageLoad: 0,
-    loadOverTime: new Array(60).fill().map((_, i) => ({
+    loadOverTime: new Array(CONFIG.historyWindow / CONFIG.pingInterval).fill().map((_, i) => ({
       load: null,
       time: i,
       color: '',
@@ -25,12 +26,14 @@ function getDateTime() {
 export default (state = loadInitialState(), action) => {
   switch (action.type) {
     case 'GET_AVERAGE_LOAD_SUCCESS':
-      console.log(state)
       const {averageLoad} = action
       const {timer} = state
       let newLoadOverTime = state.loadOverTime
       // Index of the data element to edit
-      const index = timer >= 590 ? 59 : (timer % 600) / 10
+      const index =
+        timer >= CONFIG.historyWindow - CONFIG.pingInterval
+          ? CONFIG.historyWindow / CONFIG.pingInterval - 1
+          : (timer % CONFIG.historyWindow) / CONFIG.pingInterval
       // For each data element, we compute:
       // - the average load
       // - the current date time
@@ -41,7 +44,7 @@ export default (state = loadInitialState(), action) => {
         color: averageLoad > 1 ? COLORS.heavyLoad : COLORS.normalLoad,
       }
       // We only want to display a 10 minutes history
-      if (timer >= 600) {
+      if (timer >= CONFIG.historyWindow) {
         newLoadOverTime.shift()
       }
       return {
@@ -49,9 +52,9 @@ export default (state = loadInitialState(), action) => {
         averageLoad,
         newLoadOverTime,
       }
-    case 'INCREMENT_TIMERS':
+    case 'INCREMENT_TIMER':
       // Add 10 seconds to the timer
-      let newTimer = state.timer + 10
+      let newTimer = state.timer + CONFIG.pingInterval
       return {
         ...state,
         timer: newTimer,

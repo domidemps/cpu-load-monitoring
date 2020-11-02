@@ -8,10 +8,11 @@ import Events from './Events'
 import Plot from './Plot'
 import {useEffect} from 'react'
 import {getAverageLoad} from '../actions/load'
-import {incrementTimers} from '../actions/timer'
+import {incrementTimer} from '../actions/timer'
 import {useDispatch, useSelector} from 'react-redux'
 import {addEvent, updateCurrentEvent} from '../actions/event'
 import {getEvent, isEvent} from '../helpers/utils'
+import {CONFIG} from '../config'
 
 import last from 'lodash/last'
 import isEmpty from 'lodash/isEmpty'
@@ -46,8 +47,8 @@ export default function MainPage() {
     }
     const interval = setInterval(() => {
       dispatch(getAverageLoad())
-      dispatch(incrementTimers())
-    }, 10000)
+      dispatch(incrementTimer())
+    }, CONFIG.pingInterval * 1000)
     return () => clearInterval(interval)
   }, [averageLoad])
 
@@ -57,10 +58,13 @@ export default function MainPage() {
   // - no last event or last event is a recovery
   useEffect(() => {
     if (
-      isEvent(loadOverTime, 120, 'heavy') &&
+      isEvent(loadOverTime, CONFIG.eventMinimumDuration, 'heavy') &&
       (isEmpty(events) || last(events).type === 'recovery')
     ) {
-      const event = {type: 'heavy', startAt: getEvent(loadOverTime, 120).time}
+      const event = {
+        type: 'heavy',
+        startAt: getEvent(loadOverTime, CONFIG.eventMinimumDuration).time,
+      }
       dispatch(addEvent(event))
       dispatch(updateCurrentEvent(event))
     }
@@ -69,11 +73,14 @@ export default function MainPage() {
     // - since more than 2 minutes
     // - last event is a heavy CPU load
     else if (
-      isEvent(loadOverTime, 120, 'recovery') &&
+      isEvent(loadOverTime, CONFIG.eventMinimumDuration, 'recovery') &&
       !isEmpty(events) &&
       last(events).type === 'heavy'
     ) {
-      const event = {type: 'recovery', startAt: getEvent(loadOverTime, 120).time}
+      const event = {
+        type: 'recovery',
+        startAt: getEvent(loadOverTime, CONFIG.eventMinimumDuration).time,
+      }
       dispatch(addEvent(event))
       dispatch(updateCurrentEvent(event))
     }
