@@ -10,16 +10,16 @@ export function roundValue(value, decimals) {
   return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals)
 }
 
-export function isEvent(loadOverTime, period, type) {
+export function isEvent(loadOverTime, type) {
   /* Check if a period of time is a heavy CPU load or a recovery from a heavy CPU load. */
 
-  const startElementIndex = period / CONFIG.pingInterval
+  const startElementIndex = CONFIG.eventMinimumDuration / CONFIG.pingInterval
   // Get rid of initialization null values
   const realLoadsOverTime = filter(loadOverTime, loadObject => {
     return loadObject.load != null
   })
   return (
-    realLoadsOverTime.length >= period / CONFIG.pingInterval &&
+    realLoadsOverTime.length >= CONFIG.eventMinimumDuration / CONFIG.pingInterval &&
     every(takeRight(realLoadsOverTime, startElementIndex), loadObject => {
       if (type === 'heavy') {
         return loadObject.load > 100

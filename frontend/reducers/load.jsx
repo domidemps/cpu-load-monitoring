@@ -2,6 +2,8 @@ import {roundValue} from '../helpers/utils'
 import {COLORS} from '../styles/material_ui_raw_theme_file'
 import {CONFIG} from '../config'
 
+import findIndex from 'lodash/findIndex'
+
 const dayjs = require('dayjs')
 
 export function loadInitialState() {
@@ -68,6 +70,14 @@ export default (state = loadInitialState(), action) => {
       return {
         ...state,
         currentEvent: action.event,
+      }
+    case 'UPDATE_PREVIOUS_EVENT':
+      let newEvents = state.events
+      const eventIndex = findIndex(newEvents, action.event) - 1
+      newEvents[eventIndex] = {...newEvents[eventIndex], ...action.modification}
+      return {
+        ...state,
+        events: newEvents,
       }
     default:
       return state

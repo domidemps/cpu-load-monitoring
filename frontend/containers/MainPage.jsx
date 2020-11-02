@@ -10,7 +10,7 @@ import {useEffect} from 'react'
 import {getAverageLoad} from '../actions/load'
 import {incrementTimer} from '../actions/timer'
 import {useDispatch, useSelector} from 'react-redux'
-import {addEvent, updateCurrentEvent} from '../actions/event'
+import {addEvent, updateCurrentEvent, updatePreviousEvent} from '../actions/event'
 import {getEvent, isEvent} from '../helpers/utils'
 import {CONFIG} from '../config'
 
@@ -55,34 +55,40 @@ export default function MainPage() {
   // Heavy CPU load:
   // - average CPU load > 1
   // - since more than 2 minutes
-  // - no last event or last event is a recovery
+  // - no events yet or previous event is a recovery
   useEffect(() => {
-    if (
-      isEvent(loadOverTime, CONFIG.eventMinimumDuration, 'heavy') &&
-      (isEmpty(events) || last(events).type === 'recovery')
-    ) {
-      const event = {
+    if (isEvent(loadOverTime, 'heavy') && (isEmpty(events) || last(events).type === 'recovery')) {
+      const newEventStart = getEvent(loadOverTime, CONFIG.eventMinimumDuration).time
+      const newEvent = {
         type: 'heavy',
-        startAt: getEvent(loadOverTime, CONFIG.eventMinimumDuration).time,
+        start: newEventStart,
+        end: null,
       }
-      dispatch(addEvent(event))
-      dispatch(updateCurrentEvent(event))
+      dispatch(addEvent(newEvent))
+      dispatch(updateCurrentEvent(newEvent))
+      // Update end time of the previous event
+      if (last(events)?.type === 'recovery') {
+        dispatch(updatePreviousEvent(newEvent, {end: newEventStart}))
+      }
     }
     // Recovery of heavy CPU load:
     // - average CPU load < 1
     // - since more than 2 minutes
-    // - last event is a heavy CPU load
+    // - previous event is a heavy CPU load
     else if (
-      isEvent(loadOverTime, CONFIG.eventMinimumDuration, 'recovery') &&
+      isEvent(loadOverTime, 'recovery') &&
       !isEmpty(events) &&
       last(events).type === 'heavy'
     ) {
-      const event = {
+      const newEventStart = getEvent(loadOverTime, CONFIG.eventMinimumDuration).time
+      const newEvent = {
         type: 'recovery',
-        startAt: getEvent(loadOverTime, CONFIG.eventMinimumDuration).time,
+        start: newEventStart,
+        end: null,
       }
-      dispatch(addEvent(event))
-      dispatch(updateCurrentEvent(event))
+      dispatch(addEvent(newEvent))
+      dispatch(updateCurrentEvent(newEvent))
+      dispatch(updatePreviousEvent(newEvent, {end: newEventStart}))
     }
   })
 

@@ -2,7 +2,7 @@
 import {css, jsx} from '@emotion/core'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import {Alert, AlertTitle} from '@material-ui/lab'
+import {Alert} from '@material-ui/lab'
 import {COLORS} from '../styles/material_ui_raw_theme_file'
 import {useSelector} from 'react-redux'
 import {darken} from '@material-ui/core'
@@ -49,17 +49,21 @@ export default function Events() {
   })
 
   function displayAlerts(events) {
-    if (events == null) {
+    if (isEmpty(events)) {
       return null
     }
     return map(events, event => {
       return event.type === 'heavy' ? (
         <Alert severity="error" className="spaceAround">
-          System under heavy CPU load since {event.startAt}
+          {`System under heavy CPU load ${
+            event.end ? `from ${event.start} to ${event.end}` : `since ${event.start}`
+          }`}
         </Alert>
       ) : (
         <Alert severity="success" className="spaceAround">
-          System recovered from heavy CPU load since {event.startAt}
+          {`System recovered from heavy CPU load ${
+            event.end ? `from ${event.start} to ${event.end}` : `since ${event.start}`
+          }`}
         </Alert>
       )
     })
