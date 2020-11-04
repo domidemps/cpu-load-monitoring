@@ -14,6 +14,7 @@ import map from 'lodash/map'
 
 const styles = css`
   width: 60%;
+  height: 245px;
   margin: 20px 20px 10px 10px;
   padding: 15px;
   .alignLeft {
@@ -41,7 +42,7 @@ const styles = css`
     margin: 15px;
   }
   .scrollable {
-    max-height: 120px;
+    max-height: 130px;
     overflow-y: scroll;
   }
 `
