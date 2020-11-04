@@ -8,7 +8,7 @@ import {COLORS} from '../styles/material_ui_raw_theme_file'
 import {darken} from '@material-ui/core'
 
 const styles = css`
-  margin: 25px;
+  margin: 10px 20px 20px 20px;
   padding: 15px;
 `
 

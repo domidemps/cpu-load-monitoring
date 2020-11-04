@@ -25,11 +25,9 @@ const styles = css`
   }
   .percentage {
     width: 40%;
-    margin: 25px;
   }
   .events {
     width: 60%;
-    margin: 25px;
   }
 `
 

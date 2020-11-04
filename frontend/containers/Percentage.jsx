@@ -8,7 +8,7 @@ import {COLORS} from '../styles/material_ui_raw_theme_file'
 
 const styles = css`
   width: 40%;
-  margin: 25px;
+  margin: 20px 10px 10px 20px;
   padding: 15px;
 `
 

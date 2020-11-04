@@ -14,7 +14,7 @@ import map from 'lodash/map'
 
 const styles = css`
   width: 60%;
-  margin: 25px;
+  margin: 20px 20px 10px 10px;
   padding: 15px;
   .alignLeft {
     text-align: left;
@@ -39,6 +39,10 @@ const styles = css`
   }
   .bigSpaceAround {
     margin: 15px;
+  }
+  .scrollable {
+    max-height: 120px;
+    overflow-y: scroll;
   }
 `
 
@@ -83,7 +87,7 @@ export default function Events() {
             <span className="normalLoad">{get(occurrences, 'recovery', 0)} recovered</span>
           </div>
         )}
-        {displayAlerts(events)}
+        <div className="scrollable">{displayAlerts(events)}</div>
       </div>
     </Paper>
   )
