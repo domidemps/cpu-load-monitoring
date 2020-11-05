@@ -6,14 +6,10 @@ function getAverageLoadSuccess(averageLoad) {
   return {type: 'GET_AVERAGE_LOAD_SUCCESS', averageLoad}
 }
 
-function getAverageLoadFailure(error) {
-  return {type: 'GET_AVERAGE_LOAD_FAILURE', error}
-}
-
 export function getAverageLoad() {
   return dispatch => {
     dispatch(gettingAverageLoad())
-    fetch('/api/average-cpu-load', {
+    return fetch('/api/average-cpu-load', {
       method: 'GET',
       credentials: 'same-origin',
       headers: {

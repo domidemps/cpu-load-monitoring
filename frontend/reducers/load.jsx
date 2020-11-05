@@ -27,7 +27,7 @@ function getDateTime() {
 
 export default (state = loadInitialState(), action) => {
   switch (action.type) {
-    case 'GET_AVERAGE_LOAD_SUCCESS':
+    case 'GET_AVERAGE_LOAD':
       const {averageLoad} = action
       const {timer} = state
       let newLoadOverTime = state.loadOverTime
