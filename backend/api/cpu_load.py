@@ -1,4 +1,4 @@
-from fastapi import APIRouter, FastAPI
+from fastapi import FastAPI
 import psutil
 
 app = FastAPI()

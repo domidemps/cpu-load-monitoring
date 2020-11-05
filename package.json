@@ -8,7 +8,8 @@
     "back": "python3.7 backend/server.py",
     "start": "concurrently --kill-others \"yarn front\" \"yarn back\"",
     "build": "webpack --mode=production --progress --colors",
-    "stats": "webpack --json > stats.json"
+    "stats": "webpack --json > stats.json",
+    "tests": "python3.7 backend/tests/test_api.py"
   },
   "keywords": [
     "React",
