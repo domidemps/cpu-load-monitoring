@@ -4,6 +4,8 @@ import every from 'lodash/every'
 import takeRight from 'lodash/takeRight'
 import filter from 'lodash/filter'
 
+const dayjs = require('dayjs')
+
 export function roundValue(value, decimals) {
   /* Avoid JavaScript rounding problem using exponential notation. */
 
@@ -39,4 +41,9 @@ export function getEvent(loadOverTime, period) {
     return loadObject.load != null
   })
   return realLoadsOverTime[realLoadsOverTime.length - startElementIndex]
+}
+
+export function getDateTime() {
+  let dateTime = dayjs(new Date().toString())
+  return dateTime.format('HH:mm:ss')
 }

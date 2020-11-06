@@ -6,7 +6,7 @@ import * as actions from '../../actions/load'
 const middleWares = [thunk]
 const mockStore = configureMockStore(middleWares)
 
-describe('async actions', () => {
+describe('"load" async actions', () => {
   afterEach(() => {
     fetchMock.restore()
   })

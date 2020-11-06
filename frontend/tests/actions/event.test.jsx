@@ -1,6 +1,6 @@
 import * as actions from '../../actions/event'
 
-describe('actions', () => {
+describe('"events" actions', () => {
   const event = {type: 'heavy', start: '12:30:00', end: null}
   it('Should create an action to add an event', () => {
     const expectedAction = {type: 'ADD_EVENT', event}

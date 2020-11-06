@@ -1,10 +1,8 @@
-import {roundValue} from '../helpers/utils'
+import {getDateTime, roundValue} from '../helpers/utils'
 import {COLORS} from '../styles/material_ui_raw_theme_file'
 import {CONFIG} from '../config'
 
 import findIndex from 'lodash/findIndex'
-
-const dayjs = require('dayjs')
 
 export function loadInitialState() {
   return {
@@ -18,11 +16,6 @@ export function loadInitialState() {
     events: [],
     currentEvent: null,
   }
-}
-
-function getDateTime() {
-  let dateTime = dayjs(new Date().toString())
-  return dateTime.format('HH:mm:ss')
 }
 
 export default (state = loadInitialState(), action) => {
@@ -52,7 +45,7 @@ export default (state = loadInitialState(), action) => {
       return {
         ...state,
         averageLoad,
-        newLoadOverTime,
+        loadOverTime: newLoadOverTime,
       }
     case 'INCREMENT_TIMER':
       // Add 10 seconds to the timer
