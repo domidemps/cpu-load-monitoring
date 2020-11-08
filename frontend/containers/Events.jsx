@@ -57,15 +57,15 @@ export default function Events() {
     if (isEmpty(events)) {
       return null
     }
-    return map(events, event => {
+    return map(events, (event, index) => {
       return event.type === 'heavy' ? (
-        <Alert severity="error" className="spaceAround">
+        <Alert key={`event-${index}`} severity="error" className="spaceAround">
           {`System under heavy CPU load ${
             event.end ? `from ${event.start} to ${event.end}` : `since ${event.start}`
           }`}
         </Alert>
       ) : (
-        <Alert severity="success" className="spaceAround">
+        <Alert key={`event-${index}`} severity="success" className="spaceAround">
           {`System recovered from heavy CPU load ${
             event.end ? `from ${event.start} to ${event.end}` : `since ${event.start}`
           }`}
