@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Percentage renders correctly the current average CPU load 1`] = `
+<div
+  className="MuiPaper-root css-r93fnb-Percentage MuiPaper-elevation5 MuiPaper-rounded"
+>
+  <div
+    className="css-qy1xbs-Percentage"
+  >
+    <h5
+      className="MuiTypography-root css-1gri5ec-Percentage MuiTypography-h5"
+    >
+      Average CPU load
+    </h5>
+    <h1
+      className="MuiTypography-root css-1h9ee3p-Percentage MuiTypography-h1"
+    >
+      60%
+    </h1>
+  </div>
+</div>
+`;

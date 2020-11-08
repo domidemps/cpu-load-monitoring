@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainPage renders correctly 1`] = `
+<div
+  className="css-iwvqqw-MainPage"
+>
+  <header
+    className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4"
+  >
+    <div
+      className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+    >
+      <h5
+        className="MuiTypography-root MuiTypography-h5"
+      >
+        CPU load monitoring
+      </h5>
+    </div>
+  </header>
+  <div
+    className="firstRow"
+  >
+    <div
+      className="MuiPaper-root css-r93fnb-Percentage MuiPaper-elevation5 MuiPaper-rounded"
+    >
+      <div
+        className="css-qy1xbs-Percentage"
+      >
+        <h5
+          className="MuiTypography-root css-1gri5ec-Percentage MuiTypography-h5"
+        >
+          Average CPU load
+        </h5>
+        <h1
+          className="MuiTypography-root css-1h9ee3p-Percentage MuiTypography-h1"
+        >
+          50%
+        </h1>
+      </div>
+    </div>
+    <div
+      className="MuiPaper-root css-h168i7-Events MuiPaper-elevation5 MuiPaper-rounded"
+    >
+      <div
+        className="alignCenter"
+      >
+        <h5
+          className="MuiTypography-root MuiTypography-h5"
+        >
+          Events
+        </h5>
+        <div
+          className="bigSpaceAround"
+        >
+          <span
+            className="heavyLoad"
+          >
+            1
+             heavy CPU loads, 
+          </span>
+          <span
+            className="normalLoad"
+          >
+            0
+             recovered
+          </span>
+        </div>
+        <div
+          className="scrollable"
+        >
+          <div
+            className="MuiPaper-root MuiAlert-root MuiAlert-standardError spaceAround MuiPaper-elevation0"
+            role="alert"
+          >
+            <div
+              className="MuiAlert-icon"
+            >
+              <svg
+                aria-hidden={true}
+                className="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                />
+              </svg>
+            </div>
+            <div
+              className="MuiAlert-message"
+            >
+              System under heavy CPU load from 12:30:00 to 12:33:00
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="MuiPaper-root css-jfobc3-Plot MuiPaper-elevation5 MuiPaper-rounded"
+  >
+    <div
+      style={
+        Object {
+          "height": 550,
+          "width": "100%",
+        }
+      }
+    >
+      <h5
+        className="MuiTypography-root css-4wzwv1-Plot MuiTypography-h5"
+      >
+        Average CPU load over time
+      </h5>
+      <div
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;

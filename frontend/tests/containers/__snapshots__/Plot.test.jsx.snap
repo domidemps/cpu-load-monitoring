@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Plot renders correctly the CPU load over time 1`] = `
+<div
+  className="MuiPaper-root css-jfobc3-Plot MuiPaper-elevation5 MuiPaper-rounded"
+>
+  <div
+    style={
+      Object {
+        "height": 550,
+        "width": "100%",
+      }
+    }
+  >
+    <h5
+      className="MuiTypography-root css-4wzwv1-Plot MuiTypography-h5"
+    >
+      Average CPU load over time
+    </h5>
+    <div
+      style={
+        Object {
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    />
+  </div>
+</div>
+`;
