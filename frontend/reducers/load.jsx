@@ -20,7 +20,7 @@ export function loadInitialState() {
 
 export default (state = loadInitialState(), action) => {
   switch (action.type) {
-    case 'GET_AVERAGE_LOAD':
+    case 'GET_AVERAGE_LOAD_SUCCESS':
       const {averageLoad} = action
       const {timer} = state
       let newLoadOverTime = state.loadOverTime
