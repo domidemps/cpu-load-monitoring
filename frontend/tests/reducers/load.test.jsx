@@ -17,7 +17,7 @@ describe('"load" reducer', () => {
       currentEvent: null,
     })
   })
-  it('Should handle GET_AVERAGE_LOAD', () => {
+  it('Should handle GET_AVERAGE_LOAD_SUCCESS', () => {
     const initialState = {
       averageLoad: 0,
       loadOverTime: [
@@ -40,7 +40,7 @@ describe('"load" reducer', () => {
     }
     expect(
       reducer(initialState, {
-        type: 'GET_AVERAGE_LOAD',
+        type: 'GET_AVERAGE_LOAD_SUCCESS',
         averageLoad: 0.5,
       }),
     ).toEqual(expectedNewState)
