@@ -9,7 +9,7 @@
     "start": "concurrently --kill-others \"yarn front\" \"yarn back\"",
     "build": "webpack --mode=production --progress --colors",
     "stats": "webpack --json > stats.json",
-    "test:back": "python3.7 backend/tests/test_api.py",
+    "test:back": "export PYTHONPATH=. && python3.7 backend/tests/test_api.py",
     "test:front": "jest"
   },
   "keywords": [
