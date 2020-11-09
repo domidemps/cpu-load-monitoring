@@ -3,19 +3,17 @@ module.exports = function(api) {
 
   return {
     presets: [
-      // [
-      //   '@babel/env',
-      //   {
-      //     useBuiltIns: 'entry',
-      //     loose: true,
-      //     corejs: '3',
-      //     targets: {
-      //       browsers: ['last 2 versions', 'not ie < 11'],
-      //     },
-      //   },
-      // ],
-      // '@babel/react',
-      '@babel/preset-env',
+      [
+        '@babel/preset-env',
+        {
+          useBuiltIns: 'entry',
+          loose: true,
+          corejs: '3',
+          targets: {
+            browsers: ['last 2 versions', 'not ie < 11'],
+          },
+        },
+      ],
       '@babel/preset-react',
     ],
     plugins: [
